@@ -1,1 +1,3 @@
+# Wronggggg
+
 print(pow(2,int(input())**2-2,10**9+7))
