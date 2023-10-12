@@ -1,30 +1,15 @@
-#highly looping
+word_1 = input()
+word_2 = word_1[::-1]
 
-'''
-sent = input()
+l = len(word_1)
 
-l = len(sent)
+dp = [[0]*(l+1) for _ in range(l+1)]
 
-def finderl(word):
-    if len(word) == 0:
-        return 0
-    if len(word) == 1 :
-        return 1
-    l = word[-1]
-    word = word[:-1]
-    for i in range(len(word)):
-        if word[i]==l:
-            word = word[i+1:]
-            if len(word) == 0:
-                return finderl(word)
-            if word[0]==word[-1]:
-                return (2 + finderl(word))
-            else:
-                return(2+max(finderl(word[i+1:]),finderl(word[i+1:][::-1])))
-    
-    return(finderl(word))
+for i in range(l):
+    for j in range(l):
+        if word_1[i] == word_2[j]:
+            dp[i][j] = max(dp[i-1][j-1]+1,dp[i-1][j],dp[i][j-1])
+        else:
+            dp[i][j] = max(dp[i-1][j],dp[i][j-1])
 
-
-print(max(finderl(sent),finderl(sent[::-1])))
-
-'''
+print(dp[-2][-2])
